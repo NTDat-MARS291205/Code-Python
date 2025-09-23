@@ -18,3 +18,5 @@ p1 = PhanSo(tu1, mau1)
 p2 = PhanSo(tu2, mau2)
 print(p1.add(p2))
 
+
+
