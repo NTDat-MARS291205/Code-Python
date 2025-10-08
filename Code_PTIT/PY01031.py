@@ -11,3 +11,4 @@ for _ in range(tc):
             tmp = ord("A") + (d - 10)
             s += chr(tmp)
     print(s[::-1])
+# 148
