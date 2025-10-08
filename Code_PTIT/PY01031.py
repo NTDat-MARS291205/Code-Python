@@ -5,8 +5,8 @@ for _ in range(tc):
     while n > 0:
         du = n % b
         n = n // b
-        if d < 10:
-            s += str(d)
+        if du < 10:
+            s += str(du)
         else:
             tmp = ord("A") + (du - 10)
             s += chr(tmp)
