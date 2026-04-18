@@ -1,0 +1,45 @@
+plt.figure(figsize=(20, 18))
+
+# 1. Biểu đồ Cột (Bar Chart): So sánh Accuracy
+plt.subplot(3, 2, 1)
+metrics_df['Accuracy'].sort_values().plot(kind='bar', color='royalblue')
+plt.title('1. So sánh Độ chính xác (Accuracy) giữa các Model', fontsize=14)
+plt.ylabel('Accuracy Score')
+plt.xticks(rotation=45)
+
+# 2. Biểu đồ Đường (Line Chart): So sánh MAE và RMSE
+plt.subplot(3, 2, 2)
+plt.plot(metrics_df.index, metrics_df['MAE'], marker='o', label='MAE', linewidth=2)
+plt.plot(metrics_df.index, metrics_df['RMSE'], marker='s', label='RMSE', linewidth=2)
+plt.title('2. Biểu đồ đường MAE và RMSE (Càng thấp càng tốt)', fontsize=14)
+plt.legend()
+plt.xticks(rotation=45)
+
+# 3. Biểu đồ Phân tán (Scatter Plot): Tương quan Accuracy vs MSE
+plt.subplot(3, 2, 3)
+sns.scatterplot(data=metrics_df, x='Accuracy', y='MSE', hue=metrics_df.index, s=200)
+plt.title('3. Tương quan Accuracy và MSE', fontsize=14)
+# Thêm tên model cạnh các chấm
+# Thêm tên model cạnh các chấm - SỬA LỖI KEYERROR TẠI ĐÂY
+for i in range(len(metrics_df)):
+    plt.text(
+        metrics_df['Accuracy'].iloc[i] + 0.01, # Dịch sang phải một chút cho dễ nhìn
+        metrics_df['MSE'].iloc[i], 
+        metrics_df.index[i], 
+        fontsize=10
+    )
+
+# 4. Biểu đồ Miền (Area Chart): So sánh sai số tích lũy
+plt.subplot(3, 2, 4)
+metrics_df[['MAE', 'RMSE']].plot(kind='area', ax=plt.gca(), alpha=0.4)
+plt.title('4. Biểu đồ miền của MAE và RMSE', fontsize=14)
+plt.xticks(range(len(metrics_df)), metrics_df.index, rotation=45)
+
+# 5. Biểu đồ Radar (Spider Chart) - Đơn giản hóa bằng Bar ngang cho MSE
+plt.subplot(3, 2, 5)
+metrics_df['MSE'].sort_values(ascending=False).plot(kind='barh', color='salmon')
+plt.title('5. Sai số bình phương trung bình (MSE) theo Model', fontsize=14)
+plt.xlabel('MSE Value')
+
+plt.tight_layout()
+plt.show()

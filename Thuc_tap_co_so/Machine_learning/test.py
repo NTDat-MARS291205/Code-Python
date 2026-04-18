@@ -1,0 +1,8 @@
+plt.figure(figsize=(6,4))
+plt.hist(df[df['Outcome']==0]['Glucose'], bins=20, alpha=0.6, label='Non-Diabetic')
+plt.hist(df[df['Outcome']==1]['Glucose'], bins=20, alpha=0.6, label='Diabetic')
+plt.xlabel("Glucose")
+plt.ylabel("Frequency")
+plt.title("Grouped Histogram of Glucose by Outcome")
+plt.legend()
+plt.show()

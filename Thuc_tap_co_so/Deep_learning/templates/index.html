@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BMI Prediction</title>
+</head>
+
+<body>
+
+<h2>BMI Prediction System</h2>
+
+<form action="/predict" method="post">
+
+Job:
+<select name="job">
+<option>student</option>
+<option>teacher</option>
+<option>doctor</option>
+<option>engineer</option>
+<option>worker</option>
+</select>
+
+<br><br>
+
+Age:
+<input type="number" name="age">
+
+<br><br>
+
+Height (m):
+<input type="text" name="height">
+
+<br><br>
+
+Weight (kg):
+<input type="text" name="weight">
+
+<br><br>
+
+<input type="submit" value="Predict">
+
+</form>
+
+{% if result %}
+
+<h3>Prediction: {{result}}</h3>
+
+<h3>Health Guide:</h3>
+
+<p>{{guide}}</p>
+
+{% endif %}
+
+</body>
+</html>
